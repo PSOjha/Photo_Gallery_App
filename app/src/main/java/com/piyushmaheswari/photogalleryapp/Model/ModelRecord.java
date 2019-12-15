@@ -2,7 +2,7 @@ package com.piyushmaheswari.photogalleryapp.Model;
 
 public class ModelRecord {
 
-    String id,name,image,date,addedTime,updateTime;
+    private String id,name,image,date,addedTime,updateTime;
 
     public ModelRecord(String id, String name, String image, String date, String addedTime, String updateTime) {
         this.id = id;

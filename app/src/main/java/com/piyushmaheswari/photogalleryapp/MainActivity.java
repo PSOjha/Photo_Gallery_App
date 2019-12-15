@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this,AddUpdatePhotosActivity.class);
+                i.putExtra("isEditMode",false);
                 startActivity(i);
             }
         });

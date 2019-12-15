@@ -29,8 +29,7 @@ public class SqLiteHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public long insertPhotos(String name,String image, String date, String addedTime, String updatedTime)
-    {
+    public long insertPhotos(String name,String image, String date, String addedTime, String updatedTime) {
         SQLiteDatabase db=this.getWritableDatabase();
 
         ContentValues contentValues=new ContentValues();
@@ -47,6 +46,24 @@ public class SqLiteHelper extends SQLiteOpenHelper {
         db.close();
 
         return id;
+    }
+
+    public void updatePhotos(String id,String name,String image, String date, String addedTime, String updatedTime) {
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        ContentValues contentValues=new ContentValues();
+
+        //adding Data
+        contentValues.put(Constants.C_NAME,name);
+        contentValues.put(Constants.C_IMAGE,image);
+        contentValues.put(Constants.C_DATE,date);
+        contentValues.put(Constants.C_ADDED_TIMESTAMP,addedTime);
+        contentValues.put(Constants.C_UPDATED_TIMESTAMP,updatedTime);
+
+        db.update(Constants.TABLE_NAME,contentValues,Constants.C_ID+" = ?",new String[]{id});
+
+        db.close();
+
     }
 
     public ArrayList<ModelRecord> getAllRecords(String orderBy) {

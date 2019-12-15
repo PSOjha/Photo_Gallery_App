@@ -46,7 +46,9 @@ public class AddUpdatePhotosActivity extends AppCompatActivity {
 
     private Uri imageUri;
 
-    private String name,date;
+    private String name,date,id,addedTime,updatedTime;
+    private boolean isEditMode=false;
+
     private SqLiteHelper sqLiteHelper;
 
     @Override
@@ -66,6 +68,37 @@ public class AddUpdatePhotosActivity extends AppCompatActivity {
 
 
         sqLiteHelper=new SqLiteHelper(this);
+        Intent intent=getIntent();
+        isEditMode=intent.getBooleanExtra("isEditMode",false);
+
+        if(isEditMode)
+        {
+            actionBar.setTitle("Update Data");
+
+            id=intent.getStringExtra("ID");
+            name=intent.getStringExtra("NAME");
+            date=intent.getStringExtra("DATE");
+            imageUri=Uri.parse(intent.getStringExtra("IMAGE"));
+            addedTime=intent.getStringExtra("ADDED_TIME");
+            updatedTime=intent.getStringExtra("UPDATED_TIME");
+
+            addName.setText(name);
+            addDate.setText(date);
+
+            if(imageUri.toString().equals("null"))
+            {
+                addPhoto.setImageResource(R.drawable.ic_action_name_black);
+            }
+            else
+            {
+                addPhoto.setImageURI(imageUri);
+            }
+        }
+        else
+        {
+
+        }
+
 
         cameraPermissions=new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermissions=new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -93,16 +126,32 @@ public class AddUpdatePhotosActivity extends AppCompatActivity {
         name=""+addName.getText().toString().trim();
         date=""+addDate.getText().toString().trim();
 
-        String timeStamp=""+System.currentTimeMillis();
+        if(isEditMode)
+        {
+            String timeStamp=""+System.currentTimeMillis();
+            sqLiteHelper.updatePhotos(
+                            ""+id,
+                    ""+name,
+                    ""+imageUri,
+                    ""+date,
+                    ""+addedTime,
+                    ""+timeStamp
+            );
+            Toast.makeText(this, "Updated..", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            String timeStamp=""+System.currentTimeMillis();
+            long id=sqLiteHelper.insertPhotos(
+                    ""+name,
+                    ""+imageUri,
+                    ""+date,
+                    ""+timeStamp,
+                    ""+timeStamp);
 
-        long id=sqLiteHelper.insertPhotos(
-                ""+name,
-                ""+imageUri,
-                ""+date,
-                ""+timeStamp,
-                ""+timeStamp);
+            Toast.makeText(this, "Record added against id: "+id, Toast.LENGTH_LONG).show();
+        }
 
-        Toast.makeText(this, "Record added against id: "+id, Toast.LENGTH_LONG).show();
     }
 
     private void imagePickDialog() {
