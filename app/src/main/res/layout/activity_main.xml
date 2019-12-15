@@ -12,8 +12,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/row_record"
         android:layout_width="match_parent"
-        android:paddingBottom="80dp"
-        android:clipToPadding="false"
         android:layout_height="match_parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -81,6 +81,9 @@ public class AddUpdatePhotosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addData();
+                Intent i=new Intent(AddUpdatePhotosActivity.this,MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 

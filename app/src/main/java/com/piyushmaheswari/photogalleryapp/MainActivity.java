@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         actionBar.setTitle("All Records");
         sqLiteHelper=new SqLiteHelper(this);
-        loadRecords();
 
         fab=findViewById(R.id.addPhotos);
 
@@ -46,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView=findViewById(R.id.records);
+        loadRecords();
+
     }
 
     private void loadRecords() {

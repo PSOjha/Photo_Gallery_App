@@ -1,6 +1,7 @@
 package com.piyushmaheswari.photogalleryapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.piyushmaheswari.photogalleryapp.Model.ModelRecord;
 import com.piyushmaheswari.photogalleryapp.R;
+import com.piyushmaheswari.photogalleryapp.RecordDetailActivity;
 
 import java.util.ArrayList;
 
@@ -39,14 +41,24 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.HolderRecord
     public void onBindViewHolder(@NonNull HolderRecord holder, int position) {
         ModelRecord record=recordsList.get(position);
 
+        final String id=record.getId();
         holder.datetv.setText(record.getDate());
         holder.nametv.setText(record.getName());
-        holder.imageView.setImageURI(Uri.parse(record.getImage()));
+        if(record.getImage().equals("null"))
+        {
+            holder.imageView.setImageResource(R.drawable.ic_action_name_black);
+        }
+        else
+        {
+            holder.imageView.setImageURI(Uri.parse(record.getImage()));
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(context, RecordDetailActivity.class);
+                intent.putExtra("RECORD_ID",id);
+                context.startActivity(intent);
             }
         });
 

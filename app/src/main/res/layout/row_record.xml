@@ -6,7 +6,7 @@
     app:cardElevation="1dp"
     app:contentPadding="3dp"
     app:cardBackgroundColor="#fff"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <RelativeLayout
