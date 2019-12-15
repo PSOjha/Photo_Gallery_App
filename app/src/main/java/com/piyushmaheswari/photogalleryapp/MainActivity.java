@@ -25,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
 
     ActionBar actionBar;
 
+
+    String orderByNewest=Constants.C_ADDED_TIMESTAMP+" DESC";
+    String orderByOldest=Constants.C_ADDED_TIMESTAMP+" ASC";
+    String orderByTitleAsc=Constants.C_NAME+" ASC";
+    String orderByTitleDesc=Constants.C_NAME+" DESC";
+
+    String currentOrderBy=orderByNewest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerView=findViewById(R.id.records);
-        loadRecords();
+        loadRecords(orderByNewest);
 
     }
 
-    private void loadRecords() {
-
+    private void loadRecords(String orderBy) {
+        currentOrderBy=orderBy;
         ModelAdapter modelAdapter=new ModelAdapter(MainActivity.this,
-                sqLiteHelper.getAllRecords(Constants.C_ADDED_TIMESTAMP+ " DESC"));
+                sqLiteHelper.getAllRecords(orderBy));
 
         recyclerView.setAdapter(modelAdapter);
         actionBar.setSubtitle("Total: "+sqLiteHelper.getRecordsCount());
@@ -71,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadRecords();
+        loadRecords(currentOrderBy);
     }
 
     @Override
@@ -101,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id=item.getItemId();
+        if(id==R.id.action_sort)
+        {
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

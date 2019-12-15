@@ -9,4 +9,11 @@
         android:icon="@android:drawable/ic_menu_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
+    <item
+        android:id="@+id/action_sort"
+        app:showAsAction="always"
+        android:title="Sort"
+        android:icon="@drawable/ic_action_sort"/>
+
+
 </menu>
