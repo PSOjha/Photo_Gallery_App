@@ -7,4 +7,6 @@
     <string name="search">Search</string>
     <string name="description">Description</string>
     <string name="title">Title</string>
+    <string name="sort">Sort</string>
+    <string name="delete">Delete</string>
 </resources>

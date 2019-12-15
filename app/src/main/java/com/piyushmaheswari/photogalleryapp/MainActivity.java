@@ -1,10 +1,12 @@
 package com.piyushmaheswari.photogalleryapp;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         loadRecords(currentOrderBy);
     }
@@ -113,9 +115,45 @@ public class MainActivity extends AppCompatActivity {
         int id=item.getItemId();
         if(id==R.id.action_sort)
         {
-
+            sortOptionsDialog();
+        }
+        else if(id==R.id.action_delete)
+        {
+            sqLiteHelper.deleteAll();
+            onResume();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void sortOptionsDialog() {
+
+        String options[]={"Title Ascending","Title Descending","Newest","Oldest"};
+
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Sort By:")
+                .setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(i==0)
+                        {
+                            loadRecords(orderByTitleAsc);
+                        }
+                        else if(i==1)
+                        {
+                            loadRecords(orderByTitleDesc);
+                        }
+                        else if(i==2)
+                        {
+                            loadRecords(orderByNewest);
+                        }
+                        else if(i==3)
+                        {
+                            loadRecords(orderByOldest);
+                        }
+
+                    }
+                })
+                .create().show();
     }
 }

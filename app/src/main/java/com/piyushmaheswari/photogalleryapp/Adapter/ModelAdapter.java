@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.piyushmaheswari.photogalleryapp.AddUpdatePhotosActivity;
+import com.piyushmaheswari.photogalleryapp.Database.SqLiteHelper;
+import com.piyushmaheswari.photogalleryapp.MainActivity;
 import com.piyushmaheswari.photogalleryapp.Model.ModelRecord;
 import com.piyushmaheswari.photogalleryapp.R;
 import com.piyushmaheswari.photogalleryapp.RecordDetailActivity;
@@ -26,11 +28,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.HolderRecord> {
 
     private Context context;
+    SqLiteHelper sqLiteHelper;
     private ArrayList<ModelRecord> recordsList;
 
     public ModelAdapter(Context context, ArrayList<ModelRecord> recordsList) {
         this.context = context;
         this.recordsList = recordsList;
+
+        sqLiteHelper=new SqLiteHelper(context);
     }
 
     @NonNull
@@ -109,7 +114,8 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.HolderRecord
                 }
                 else if(i==1)
                 {
-
+                    sqLiteHelper.deleteData(id);
+                    ((MainActivity)context).onResume();
                 }
 
             }

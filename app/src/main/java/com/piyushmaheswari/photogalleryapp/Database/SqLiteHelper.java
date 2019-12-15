@@ -66,6 +66,18 @@ public class SqLiteHelper extends SQLiteOpenHelper {
 
     }
 
+    public void deleteData(String id){
+        SQLiteDatabase db=getWritableDatabase();
+        db.delete(Constants.TABLE_NAME,Constants.C_ID + " = ?",new String[]{});
+        db.close();
+    }
+
+    public void deleteAll(){
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("DELETE FROM "+Constants.TABLE_NAME);
+        db.close();
+    }
+
     public ArrayList<ModelRecord> getAllRecords(String orderBy) {
         ArrayList<ModelRecord> records=new ArrayList<>();
 
@@ -122,8 +134,7 @@ public class SqLiteHelper extends SQLiteOpenHelper {
         return records;
     }
 
-    public int getRecordsCount()
-    {
+    public int getRecordsCount() {
         String countQuery="SELECT * FROM "+Constants.TABLE_NAME;
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cursor=db.rawQuery(countQuery,null);
