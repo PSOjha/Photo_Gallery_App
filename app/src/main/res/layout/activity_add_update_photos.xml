@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddUpdatePhotosActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/photoAdded"
+        app:civ_border_color="#a4a4a4"
+        app:civ_border_width="1dp"
+        android:src="@drawable/ic_action_name_black"
+        android:layout_width="120dp"
+        android:layout_height="120dp"/>
+
+
+    <EditText
+        android:id="@+id/nameEt"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPersonName|textCapWords"
+        android:hint="@string/name"
+        android:textSize="25sp"
+        android:padding="8dp"
+        android:background="@drawable/shape_border"
+        android:layout_below="@id/photoAdded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/dateEt"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:padding="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_border"
+        android:inputType="date"
+        android:textSize="25sp"
+        android:hint="@string/dd_mm_yyyy"
+        android:layout_below="@id/nameEt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/saveBtn"
+        android:layout_below="@id/dateEt"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="#000"
+        android:text="Save"
+        android:textColor="#fff"
+        android:layout_height="wrap_content"/>
+
+
+</RelativeLayout>
