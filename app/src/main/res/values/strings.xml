@@ -2,4 +2,6 @@
     <string name="app_name">Photo Gallery App</string>
     <string name="name">Name</string>
     <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string name="names">Name</string>
+    <string name="dates">Date</string>
 </resources>

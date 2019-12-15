@@ -99,7 +99,7 @@ public class AddUpdatePhotosActivity extends AppCompatActivity {
                 ""+timeStamp,
                 ""+timeStamp);
 
-        Toast.makeText(this, "Record added against id: "+id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Record added against id: "+id, Toast.LENGTH_LONG).show();
     }
 
     private void imagePickDialog() {

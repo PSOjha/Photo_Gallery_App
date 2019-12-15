@@ -1,6 +1,7 @@
 package com.piyushmaheswari.photogalleryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fab;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,5 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        recyclerView=findViewById(R.id.records);
     }
 }
